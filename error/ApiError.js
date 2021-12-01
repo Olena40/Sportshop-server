@@ -1,4 +1,4 @@
-export const badRequest = (status, message) => {
+export const badRequest = (message) => {
   return new ApiError(404, message);
 };
 

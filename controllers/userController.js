@@ -46,6 +46,10 @@ export const login = async (req, res) => {
   return res.json({ token });
 };
 
-export const check = async (req, res) => {
-  return res.json({ message: "All right" });
+/* export const check = async (req, res) => {
+  return res.json({ message: "All right" }); */
+
+export const check = async (req, res, next) => {
+  const token = generateJwt(req.user.id, req.user.email, req.user.role);
+  return res.json({ token });
 };
