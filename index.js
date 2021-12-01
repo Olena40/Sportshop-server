@@ -6,9 +6,6 @@ import router from "./routes/indexRouter.js";
 import fileupload from "express-fileupload";
 import path from "path";
 
-// import sequelize from "./db.js";
-// import { models } from "./models/models.js";
-
 ////////////////////////////////
 
 import pgm from "sequelize";
@@ -24,6 +21,7 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
   }
 );
+
 ////////////////////////////////////////////////
 
 import pk from "sequelize";

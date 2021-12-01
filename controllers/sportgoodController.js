@@ -1,5 +1,4 @@
-import { Sportgood } from "../index.js";
-import { SportgoodInfo } from "../index.js";
+import { Sportgood, SportgoodInfo } from "../index.js";
 import { v4 as uuidv4 } from "uuid";
 uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 import path from "path";
@@ -44,7 +43,7 @@ export const getAll = async (req, res) => {
   // let { brandId, typeId } = req.query;
   let { brandId, typeId, limit, page } = req.query;
   page = page || 1;
-  limit = limit || 18;
+  limit = limit || 9;
   let offset = page * limit - limit;
 
   let sportgoods;
