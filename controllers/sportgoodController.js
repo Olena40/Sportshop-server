@@ -6,7 +6,7 @@ const __dirname = path.resolve();
 
 export const create = async (req, res, next) => {
   try {
-    const { name, price, brandId, typeId, rating, info } = req.body;
+    let { name, price, brandId, typeId, rating, info } = req.body;
     const { img } = req.files;
     let fileName = uuidv4() + ".jpeg";
     img.mv(path.resolve(__dirname, "static", fileName));
@@ -40,7 +40,6 @@ export const create = async (req, res, next) => {
 };
 
 export const getAll = async (req, res) => {
-  // let { brandId, typeId } = req.query;
   let { brandId, typeId, limit, page } = req.query;
   page = page || 1;
   limit = limit || 9;

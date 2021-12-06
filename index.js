@@ -32,6 +32,7 @@ export const User = sequelize.define("User", {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
+  // profilePic: { type: DataTypes.STRING, defaultValue: "" },
 });
 console.log(User === sequelize.models.User);
 
@@ -76,6 +77,19 @@ export const TypeBrand = sequelize.define("type_brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
+export const Post = sequelize.define("post", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  description: { type: DataTypes.STRING, allowNull: false },
+  username: { type: DataTypes.STRING, allowNull: false },
+  photo: { type: DataTypes.STRING, allowNull: false },
+});
+
+export const Category = sequelize.define("category", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, unique: true, allowNull: false },
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -102,6 +116,9 @@ SportgoodInfo.belongsTo(Sportgood);
 
 Type.belongsToMany(Brand, { through: TypeBrand });
 Brand.belongsToMany(Type, { through: TypeBrand });
+
+Category.hasMany(Post);
+Post.belongsTo(Category);
 
 //////////////////////////////////////////////
 
