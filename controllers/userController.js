@@ -26,6 +26,8 @@ export const registration = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 5);
   const user = await User.create({ email, role, password: hashPassword });
+  await user.save();
+  res.status(201).json({ message: "Пользователь создан" });
   const basket = await Basket.create({ userId: user.id });
   const token = generateJwt(user.id, user.email, user.role);
   return res.json({ token });
@@ -35,6 +37,7 @@ export const registration = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
+
   if (!user) {
     return res.status(400).json({ message: "User is not found" });
   }
